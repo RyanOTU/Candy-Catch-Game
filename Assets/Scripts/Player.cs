@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float _moveSpeed = 5;
+    private Vector2 _moveDir;
     void Start()
     {
-        
+        Controls.Init(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.right * (_moveDir.x * Time.deltaTime * _moveSpeed), Space.Self);
+    }
+    public void SetMovementDirection(Vector3 direction)
+    {
+        _moveDir = direction;
     }
 }

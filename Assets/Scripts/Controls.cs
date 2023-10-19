@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controls : MonoBehaviour
+public class Controls
 {
-    // Start is called before the first frame update
-    void Start()
+    private static PlayerAction controls;
+    public static void Init(Player player)
     {
-        
-    }
+        controls = new PlayerAction();
 
-    // Update is called once per frame
-    void Update()
+        controls.Game.Move.performed += ctx =>
+        {
+            player.SetMovementDirection(ctx.ReadValue<Vector2>());
+        };
+        PlayMode();
+    }
+    public static void PlayMode()
     {
-        
+        controls.Enable();
     }
 }
