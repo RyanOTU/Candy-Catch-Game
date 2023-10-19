@@ -13,7 +13,7 @@ public class CandyController : MonoBehaviour
     [SerializeField] private int candyAmount;
     [SerializeField] private float candyFallSpeed;
     private int currentCandy;
-    private Vector3 startingPos = new Vector3(0, 10, 0);
+    private Vector3 startingPos = new Vector3(0, 0, 0);
     
     //Timer Variables
     [SerializeField] private int timerInterval = 3000;
@@ -87,7 +87,6 @@ public class CandyController : MonoBehaviour
         if (candies.Count > 0)
         {
             candies.Remove(candies[currentCandy]);
-            candies[currentCandy].transform.position = startingPos; //Unity kept throwing an error when I tried to destroy, so instead I just moved it :/
             Instantiate(candies[currentCandy], this.transform);
             transform.position = new Vector3(Random.Range(-8, 9), startingPos.y, 0);
         }
